@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "390806678004",
+    "project_id": "naricare-4b1f7",
+    "storage_bucket": "naricare-4b1f7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390806678004:android:89c9ad0998178092cf71a1",
+        "android_client_info": {
+          "package_name": "com.example.naricare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC970uXdWqw1UX6aSyrZFHBbiBRsm3NPqQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
