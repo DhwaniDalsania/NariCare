@@ -30,26 +30,13 @@ class AuthProvider with ChangeNotifier {
       try {
         if (firebaseUser != null) {
           // Fetch extended profile from Firestore
-          debugPrint('[NARICARE DIAGNOSTICS] Fetching profile for: ${firebaseUser.uid}');
-          final firestoreUser = await _firestoreService.getUser(firebaseUser.uid).timeout(
-            const Duration(seconds: 10),
-            onTimeout: () {
-              debugPrint('[NARICARE DIAGNOSTICS] Profile fetch TIMEOUT');
-              return null;
-            },
+          debugPrint('[NARICARE DIAGNOSTICS] Skipping Firestore profile fetch temporarily');
+
+          _user = User(
+            id: firebaseUser.uid,
+            name: firebaseUser.displayName ?? 'User',
+            email: firebaseUser.email ?? '',
           );
-          
-          if (firestoreUser != null) {
-            debugPrint('[NARICARE DIAGNOSTICS] Profile Fetched Successfully');
-            _user = firestoreUser;
-          } else {
-            debugPrint('[NARICARE DIAGNOSTICS] Profile not found. Creating skeleton.');
-            _user = User(
-              id: firebaseUser.uid,
-              name: firebaseUser.displayName ?? 'User',
-              email: firebaseUser.email ?? '',
-            );
-          }
         } else {
           _user = null;
         }

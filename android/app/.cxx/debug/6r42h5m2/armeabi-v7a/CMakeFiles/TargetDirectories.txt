@@ -1,0 +1,2 @@
+D:/flutter projects/menstrual_health_companion/android/app/.cxx/debug/6r42h5m2/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/flutter projects/menstrual_health_companion/android/app/.cxx/debug/6r42h5m2/armeabi-v7a/CMakeFiles/rebuild_cache.dir

@@ -13,8 +13,8 @@ class AuthService {
     try {
       debugPrint('[NARICARE DIAGNOSTICS] Starting SignUp for: $email');
       UserCredential result = await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
+        email: email.trim(),
+        password: password.trim(),
       ).timeout(const Duration(seconds: 15), onTimeout: () {
         debugPrint('[NARICARE DIAGNOSTICS] ERR: SignUp timed out (Check internet/DNS)');
         throw FirebaseAuthException(code: 'network-request-failed', message: 'The connection timed out.');
@@ -31,7 +31,7 @@ class AuthService {
       return user;
     } on FirebaseAuthException catch (e) {
       debugPrint('[NARICARE DIAGNOSTICS] ERR: SignUp Firebase Exception: ${e.code} - ${e.message}');
-      throw _handleError(e);
+      rethrow;
     } catch (e) {
       debugPrint('[NARICARE DIAGNOSTICS] ERR: SignUp Unknown Error: $e');
       throw 'An unexpected error occurred during signup.';
@@ -43,8 +43,8 @@ class AuthService {
     try {
       debugPrint('[NARICARE DIAGNOSTICS] Starting SignIn for: $email');
       UserCredential result = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
+        email: email.trim(),
+        password: password.trim(),
       ).timeout(const Duration(seconds: 15), onTimeout: () {
         debugPrint('[NARICARE DIAGNOSTICS] ERR: SignIn timed out (Check internet/DNS)');
         throw FirebaseAuthException(code: 'network-request-failed', message: 'The connection timed out.');
@@ -54,7 +54,7 @@ class AuthService {
       return result.user;
     } on FirebaseAuthException catch (e) {
       debugPrint('[NARICARE DIAGNOSTICS] ERR: SignIn Firebase Exception: ${e.code} - ${e.message}');
-      throw _handleError(e);
+      rethrow;
     } catch (e) {
       debugPrint('[NARICARE DIAGNOSTICS] ERR: SignIn Unknown Error: $e');
       throw 'An unexpected error occurred during login.';
@@ -75,6 +75,8 @@ class AuthService {
       case 'user-not-found': return 'No user found with this email.';
       case 'wrong-password': return 'Incorrect password.';
       case 'invalid-email': return 'The email address is badly formatted.';
+      case 'invalid-credential':
+        return 'Invalid email or password.';
       case 'email-already-in-use': return 'An account already exists for this email.';
       case 'weak-password': return 'The password is too weak.';
       default: return e.message ?? 'An unknown error occurred.';
