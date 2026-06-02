@@ -52,7 +52,7 @@ class GovernmentSchemesScreen extends StatelessWidget {
     ),
     Scheme(
       title: 'Asmita Yojana (Maharashtra State)',
-      organization: 'Govt. of Maharashtra',
+      organization: 'Govt. of  Maharashtra',
       description: 'A scheme to provide low-cost sanitary napkins to rural adolescent girls and women.',
       eligibility: 'School-going girls in Zilla Parishad schools and rural women through Self Help Groups (SHGs).',
       benefits: 'Subsidized pads at ₹5 for school girls and low-cost availability for rural women.',
